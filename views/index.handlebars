@@ -1,0 +1,56 @@
+<div class= "text-center">
+	<header>
+   <h1>Eat The Burger!</h1>
+</header>
+</div>
+<main>
+
+  {{!-- Create a div where is_devoured is false --}}
+  <div class="row">
+    <div class="col-xs-6 col-md-4">
+		<h2>On The Menu</h2>
+    {{#each burgers}}
+      {{#unless this.devoured}}
+        <div class="devour!">
+          {{this.id}}. {{this.burger_name}}
+        </div>
+        <div class="devour-btn-form">
+          <form action="/{{this.id}}?_method=PUT" method="POST">
+             <button type="submit" class="devour-it btn btn-primary">Devour!</button>
+          </form>
+        </div>
+      {{/unless}}
+    {{/each}}
+  </div>
+
+    {{!-- Create a new burger and save it in the database --}}
+  <div class="col-xs-6 col-md-4">
+    <form method="POST" action="/" class="add-a-burger">
+        <input type="text" name="burger"><br>
+        <button type="submit" class= "btn btn-primary">Add!</button>
+        <h3>Add a Burger!</h3>
+    </form>
+  </div>
+
+  {{!-- Create a div where is_devoured is true --}}
+  <div class="col-xs-6 col-md-4">
+	  <h2>I've Been Eaten!</h2>
+    {{#each burgers}}
+      {{#if this.devoured}}
+        <div class="devoured">
+          {{this.id}}. {{this.burger_name}}
+          <form action="/{{this.id}}?_method=PUT" method="POST">
+            <input type="hidden" name="devoured" value="true">
+          </form>
+        </div>
+          <div class="devoured-form">
+          <form action="/{{this.id}}?_method=DELETE" method="POST">
+            <button class="btn btn-success devoured-btn" type="submit">Remove</button>
+          </form>
+        </div>
+      {{/if}}
+    {{/each}}
+  </div>
+</div>
+
+</main>
