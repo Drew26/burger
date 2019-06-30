@@ -23,6 +23,7 @@
     "method-override": "^2.3.8",
     "mysql": "^2.13.0",
     "mysql2": "^1.6.5",
-    "sequelize": "^6.0.0"
+    "sequelize": "^6.0.0",
+    "sequelize-heroku": "^2.1.0"
   }
 }
